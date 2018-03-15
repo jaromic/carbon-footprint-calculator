@@ -15,9 +15,17 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('type')->index();
             $table->biginteger('emissions')->index();
+
             $table->unsignedInteger('user_id')->nullable()->index();
+
+            $table->integer('amount')->nullable()->index();
+            $table->string('unit')->nullable();
+            $table->decimal('rate')->nullable();
+            $table->string('rate_unit')->nullable();
+
             $table->timestamps();
         });
     }

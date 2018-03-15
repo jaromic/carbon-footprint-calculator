@@ -43,4 +43,27 @@ class ActivityTest extends TestCase
 
     $this->assertEquals(auth()->id(), $this->activity->fresh()->user->id);
   }
+
+  /** @test */
+  function an_activity_has_optional_fields_for_amount_unit_rate_and_unit_rate()
+  {
+    $this->assertEquals(null, $this->activity->amount);
+    $this->assertEquals(null, $this->activity->unit);
+    $this->assertEquals(null, $this->activity->rate);
+    $this->assertEquals(null, $this->activity->rate_unit);
+
+    $this->activity->update([
+      'amount' => 25000,
+      'unit' => 'miles',
+      'rate' => 25,
+      'rate_unit' => 'mpg',
+    ]);
+
+    $updatedActivity = $this->activity->fresh();
+
+    $this->assertEquals(25000, $updatedActivity->amount);
+    $this->assertEquals('miles', $updatedActivity->unit);
+    $this->assertEquals(25, $updatedActivity->rate);
+    $this->assertEquals('mpg', $updatedActivity->rate_unit);    
+  }
 }
