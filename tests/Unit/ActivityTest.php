@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ActivityTest extends TestCase
 {
-  use DatabaseTransactions;
+  use DatabaseMigrations;
 
   public function setUp()
   {
