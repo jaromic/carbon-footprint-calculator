@@ -15,11 +15,15 @@ import Car from './components/Car.js';
 import House from './components/House.js';
 import Waste from './components/Waste.js';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import reducers from './reducers';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <Provider store={createStore(reducers)}>
         <Router>
 
           <div>
@@ -42,9 +46,9 @@ class App extends Component {
             <Route path="/app/waste" component={Waste} />
 
           </div>
-          
+
         </Router>
-      </div>
+      </Provider>
     );
   }
 }
