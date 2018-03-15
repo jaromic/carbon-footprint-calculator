@@ -40,7 +40,9 @@ class App extends Component {
             <Route exact path="/app" component={House} />
             <Route path="/app/car" component={Car} />
             <Route path="/app/waste" component={Waste} />
+
           </div>
+          
         </Router>
       </div>
     );
