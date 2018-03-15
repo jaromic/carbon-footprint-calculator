@@ -7,7 +7,7 @@ export function calcEmissions(distance, fuelEconomy, unit='miles', rateUnit='mpg
 
     let gallons = distance / fuelEconomy;
 
-    let tons = gallons * 4.5;
+    let tons = gallons * 9.0;
 
     let grams = tons * 1000000;
 

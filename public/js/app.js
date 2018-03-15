@@ -60513,7 +60513,7 @@ function calcEmissions(distance, fuelEconomy) {
 
     var gallons = distance / fuelEconomy;
 
-    var tons = gallons * 4.5;
+    var tons = gallons * 9.0;
 
     var grams = tons * 1000000;
 
