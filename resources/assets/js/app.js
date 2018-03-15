@@ -37,9 +37,9 @@ class App extends Component {
               </li>
             </ul>
 
-            <Route exact path="/" component={House} />
-            <Route path="/car" component={Car} />
-            <Route path="/waste" component={Waste} />
+            <Route exact path="/app" component={House} />
+            <Route path="/app/car" component={Car} />
+            <Route path="/app/waste" component={Waste} />
           </div>
         </Router>
       </div>
