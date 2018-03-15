@@ -31,13 +31,13 @@ class App extends Component {
             <h2>Topics</h2>
             <ul>
               <li>
-                <Link to={'/'}>House Usage</Link>
+                <Link to={'/app/'}>House Usage</Link>
               </li>
               <li>
-                <Link to={'/car'}>Car Usage</Link>
+                <Link to={'/app/car'}>Car Usage</Link>
               </li>
               <li>
-                <Link to={'/waste'}>Waste</Link>
+                <Link to={'/app/waste'}>Waste</Link>
               </li>
             </ul>
 
