@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux"
+import { connect } from 'react-redux';
 
+import * as actions from '../actions';
 
-
-export default class Car extends Component {
+class Car extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
@@ -10,7 +12,15 @@ export default class Car extends Component {
 
     let mpg = parseInt(this.refs.mpg.value);
 
-    this.props.dispatch(calcEmissions(miles, mpg));
+    this.props.calcEmissions(miles, mpg);
+  }
+
+  emissions() {
+    if (this.props.cars && this.props.cars.emissions) {
+      return this.props.cars.emissions / 1000000
+    } else {
+      return 0
+    }
   }
 
   render() {
@@ -19,7 +29,11 @@ export default class Car extends Component {
         <div className="row">
           <div className="col-md-8 col-md-offset-2">
             <div className="panel panel-default">
-              <div className="panel-heading">Emissions from  driving</div>
+              <div className="panel-heading">
+                <p>Emissions from  driving</p>
+
+                <p>Tons of CO2e: {this.emissions()}</p>
+              </div>
 
               <div className="panel-body">
                 Enter your emissions from driving 
@@ -45,3 +59,15 @@ export default class Car extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => { 
+  return { cars: state.cars };
+};
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    calcEmissions: actions.calcEmissions
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Car);

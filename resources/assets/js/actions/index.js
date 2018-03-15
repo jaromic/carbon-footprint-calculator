@@ -15,9 +15,11 @@ export function calcEmissions(distance, fuelEconomy, unit='miles', rateUnit='mpg
     emissionsPayload.distance = distance;
     emissionsPayload.unit = unit;
 
-    return {
+    let action = {
       type: CALCULATE_EMISSIONS,
       payload: emissionsPayload
     }
+
+    return action;
   }
 }

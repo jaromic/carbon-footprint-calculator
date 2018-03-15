@@ -59043,6 +59043,9 @@ var withRouter = function withRouter(Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions__ = __webpack_require__(303);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59050,6 +59053,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
 
 
 
@@ -59063,7 +59070,7 @@ var Car = function (_Component) {
   }
 
   _createClass(Car, [{
-    key: "handleSubmit",
+    key: 'handleSubmit',
     value: function handleSubmit(event) {
       event.preventDefault();
 
@@ -59071,59 +59078,78 @@ var Car = function (_Component) {
 
       var mpg = parseInt(this.refs.mpg.value);
 
-      this.props.dispatch(calcEmissions(miles, mpg));
+      this.props.calcEmissions(miles, mpg);
     }
   }, {
-    key: "render",
+    key: 'emissions',
+    value: function emissions() {
+      if (this.props.cars && this.props.cars.emissions) {
+        return this.props.cars.emissions / 1000000;
+      } else {
+        return 0;
+      }
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "div",
-        { className: "container" },
+        'div',
+        { className: 'container' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "div",
-          { className: "row" },
+          'div',
+          { className: 'row' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { className: "col-md-8 col-md-offset-2" },
+            'div',
+            { className: 'col-md-8 col-md-offset-2' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "div",
-              { className: "panel panel-default" },
+              'div',
+              { className: 'panel panel-default' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "panel-heading" },
-                "Emissions from  driving"
+                'div',
+                { className: 'panel-heading' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'p',
+                  null,
+                  'Emissions from  driving'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  'p',
+                  null,
+                  'Tons of CO2e: ',
+                  this.emissions()
+                )
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "panel-body" },
-                "Enter your emissions from driving",
+                'div',
+                { className: 'panel-body' },
+                'Enter your emissions from driving',
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                  "form",
+                  'form',
                   { onSubmit: this.handleSubmit.bind(this) },
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "form-group" },
+                    'p',
+                    { className: 'form-group' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "label",
+                      'label',
                       null,
-                      "Miles"
+                      'Miles'
                     ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", ref: "miles", className: "form-control" })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', ref: 'miles', className: 'form-control' })
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "p",
-                    { className: "form-group" },
+                    'p',
+                    { className: 'form-group' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                      "label",
+                      'label',
                       null,
-                      "MPG"
+                      'MPG'
                     ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", ref: "mpg", className: "form-control" })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', ref: 'mpg', className: 'form-control' })
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "button",
-                    { type: "submit", className: "btn btn-primary" },
-                    "Enter"
+                    'button',
+                    { type: 'submit', className: 'btn btn-primary' },
+                    'Enter'
                   )
                 )
               )
@@ -59137,7 +59163,17 @@ var Car = function (_Component) {
   return Car;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (Car);
+var mapStateToProps = function mapStateToProps(state) {
+  return { cars: state.cars };
+};
+
+function mapDispatchToProps(dispatch) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1_redux__["a" /* bindActionCreators */])({
+    calcEmissions: __WEBPACK_IMPORTED_MODULE_3__actions__["b" /* calcEmissions */]
+  }, dispatch);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2_react_redux__["b" /* connect */])(mapStateToProps, mapDispatchToProps)(Car));
 
 /***/ }),
 /* 275 */
@@ -59276,7 +59312,7 @@ var Waste = function (_Component) {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
 /* unused harmony reexport createProvider */
 /* unused harmony reexport connectAdvanced */
-/* unused harmony reexport connect */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
 
 
 
@@ -59581,7 +59617,7 @@ function createConnect() {
   };
 }
 
-/* unused harmony default export */ var _unused_webpack_default_export = (createConnect());
+/* harmony default export */ __webpack_exports__["a"] = (createConnect());
 
 /***/ }),
 /* 281 */
@@ -60432,7 +60468,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 
 
 var rootReducer = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["b" /* combineReducers */])({
-  car: __WEBPACK_IMPORTED_MODULE_1__car_reducer__["a" /* default */]
+  cars: __WEBPACK_IMPORTED_MODULE_1__car_reducer__["a" /* default */]
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (rootReducer);
@@ -60442,18 +60478,16 @@ var rootReducer = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["b" /* combineReduc
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions__ = __webpack_require__(303);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions__ = __webpack_require__(303);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { emissions: 1000000 };
   var action = arguments[1];
 
+
   switch (action.type) {
-    case __WEBPACK_IMPORTED_MODULE_1__actions__["a" /* CALCULATE_EMISSIONS */]:
+    case __WEBPACK_IMPORTED_MODULE_0__actions__["a" /* CALCULATE_EMISSIONS */]:
       return action.payload;
     default:
       return state;
@@ -60466,7 +60500,7 @@ var rootReducer = Object(__WEBPACK_IMPORTED_MODULE_0_redux__["b" /* combineReduc
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CALCULATE_EMISSIONS; });
-/* unused harmony export calcEmissions */
+/* harmony export (immutable) */ __webpack_exports__["b"] = calcEmissions;
 var CALCULATE_EMISSIONS = 'calculate_emmissions';
 
 function calcEmissions(distance, fuelEconomy) {
@@ -60487,10 +60521,12 @@ function calcEmissions(distance, fuelEconomy) {
     emissionsPayload.distance = distance;
     emissionsPayload.unit = unit;
 
-    return {
+    var action = {
       type: CALCULATE_EMISSIONS,
       payload: emissionsPayload
     };
+
+    return action;
   }
 }
 
