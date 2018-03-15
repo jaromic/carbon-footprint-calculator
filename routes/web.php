@@ -11,8 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('calculator.calculator');
-})->name('home');
+Route::group(['prefix' => 'app'], function () {
+    Route::get('/', function() {
+      return view('calculator.calculator');
+    })->name('home');
+
+    Route::any('/{any}', function($any) {
+      return view('calculator.calculator');
+    })->where('any', '.*');
+});
+
+Route::redirect('/', '/app', 301);
 
 Auth::routes();
