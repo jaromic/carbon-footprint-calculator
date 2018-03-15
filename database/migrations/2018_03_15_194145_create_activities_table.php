@@ -17,6 +17,7 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
             $table->string('type')->index();
             $table->biginteger('emissions')->index();
+            $table->unsignedInteger('user_id')->nullable()->index();
             $table->timestamps();
         });
     }

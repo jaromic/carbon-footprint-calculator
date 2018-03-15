@@ -39,8 +39,8 @@ class ActivityTest extends TestCase
   {
     $this->assertEquals(null, $this->activity->user_id);
 
-    $this->activity->update('user_id', auth()->id);
+    $this->activity->update(['user_id' => auth()->id()]);
 
-    $this->assertEquals(auth()->id, $this->activity->fresh()->user->id);
+    $this->assertEquals(auth()->id(), $this->activity->fresh()->user->id);
   }
 }
