@@ -59097,7 +59097,7 @@ var Car = function (_Component) {
   }, {
     key: 'save',
     value: function save() {
-      axios.post('/app/activities', this.props.cars).then(function (_ref) {
+      axios.post('/api/activities', { cars: this.props.cars }).then(function (_ref) {
         var data = _ref.data;
 
         console.log(data);

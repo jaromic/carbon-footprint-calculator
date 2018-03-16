@@ -24,7 +24,7 @@ class Car extends Component {
   }
 
   save() {
-    axios.post('/app/activities', this.props.cars)
+    axios.post('/api/activities', {cars: this.props.cars})
         .then(({data}) => {
           console.log(data);
         })
