@@ -16,14 +16,21 @@ class Car extends Component {
   }
 
   emissions() {
-    if (this.props.cars && this.props.cars.emissions) {
-      return this.props.cars.emissions / 1000000
+    if (this.props.emissionData && this.props.emissionData.emissions) {
+      return this.props.emissionData.emissions / 1000000
     } else {
       return 0
     }
   }
 
-  save() {
+  handleInputChange() {
+    this.props.updateCarForm({
+      distance: this.refs.miles.value,
+      mpg: tis.refs.mpg.value
+    })
+  }
+
+  submitData() {
     axios.post('/api/activities', {cars: this.props.cars})
         .then(({data}) => {
           console.log(data);
@@ -48,18 +55,24 @@ class Car extends Component {
                 <form onSubmit={this.handleSubmit.bind(this)}>
                   <p className="form-group">
                     <label>Miles</label>
-                    <input type="text" ref="miles" className="form-control" />
+                    <input type="text" ref="miles" className="form-control" 
+                           value={this.props.formData.distance}
+                           onChange={this.handleInputChange.bind(this)} />
                   </p>
 
                   <p className="form-group">
                     <label>MPG</label>
-                    <input type="text" ref="mpg" className="form-control" />
+                    <input type="text" ref="mpg" className="form-control"
+                            value={this.props.formData.mpg} 
+                            onChange={this.handleInputChange.bind(this)}/>
                   </p>
 
                   <button type="submit" className="btn btn-primary">Enter</button>
 
-                  <button className="btn btn-danger" onClick={this.save()}>Save</button>
+                  
                 </form>
+
+                <button className="btn btn-danger" onClick={this.submitData()}>Save</button>
               </div>
             </div>
           </div>
@@ -70,7 +83,7 @@ class Car extends Component {
 }
 
 const mapStateToProps = (state) => { 
-  return { cars: state.cars };
+  return { emissionData: state.cars.emissionData, formData: state.cars.formData };
 };
 
 function mapDispatchToProps(dispatch) {

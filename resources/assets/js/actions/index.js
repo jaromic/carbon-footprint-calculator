@@ -1,4 +1,5 @@
 export const CALCULATE_EMISSIONS = 'calculate_emmissions';
+export const UPDATE_CAR_FORM = 'update_car_form';
 
 export function calcEmissions(distance, fuelEconomy, unit='miles', rateUnit='mpg') {
   if (unit === 'miles' && rateUnit === 'mpg') {
@@ -21,5 +22,12 @@ export function calcEmissions(distance, fuelEconomy, unit='miles', rateUnit='mpg
     }
 
     return action;
+  }
+}
+
+export function updateCarForm(values) {
+  return {
+    type: UPDATE_CAR_FORM,
+    payload: values
   }
 }
