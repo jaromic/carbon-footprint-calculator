@@ -23,6 +23,13 @@ class Car extends Component {
     }
   }
 
+  save() {
+    axios.post('/app/activities', this.props.cars)
+        .then(({data}) => {
+          console.log(data);
+        })
+  }
+
   render() {
     return (
       <div className="container">
@@ -50,6 +57,8 @@ class Car extends Component {
                   </p>
 
                   <button type="submit" className="btn btn-primary">Enter</button>
+
+                  <button className="btn btn-danger" onClick={this.save()}>Save</button>
                 </form>
               </div>
             </div>
