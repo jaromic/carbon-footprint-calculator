@@ -26,7 +26,7 @@ class Car extends Component {
   handleInputChange() {
     this.props.updateCarForm({
       distance: this.refs.miles.value,
-      mpg: tis.refs.mpg.value
+      mpg: this.refs.mpg.value
     })
   }
 

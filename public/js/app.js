@@ -59117,7 +59117,7 @@ var Car = function (_Component) {
     value: function handleInputChange() {
       this.props.updateCarForm({
         distance: this.refs.miles.value,
-        mpg: tis.refs.mpg.value
+        mpg: this.refs.mpg.value
       });
     }
   }, {
